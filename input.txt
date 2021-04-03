@@ -1,0 +1,8 @@
+Post Input:
+http://127.0.0.1:5000/predict?Cylinders=8.0&Displacement=390.0&Horsepower=190.0&Weight=3850.0&Acceleration=8.5&Model Year=70.0&Europe=0.0&Japan=0.0&USA=01.0
+
+Post Output:
+{
+    "result (MPG)": 15.818567276000977,
+    "input": "{'Cylinders': 8.0, 'Displacement': 390.0, 'Horsepower': 190.0, 'Weight': 3850.0, 'Acceleration': 8.5, 'Model Year': 70.0, 'Europe': 0.0, 'Japan': 0.0, 'USA': 1.0}"
+}
