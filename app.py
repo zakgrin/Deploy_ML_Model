@@ -6,8 +6,8 @@ import numpy as np
 app = Flask(__name__)
 api = Api(app)
 
-path = "dnn_model"
-model = keras.models.load_model(path)  # or tf.saved_model.load(path)
+model_path = "dnn_model"
+model = keras.models.load_model(model_path,)
 model_features = ['Cylinders', 'Displacement', 'Horsepower', 'Weight',
                   'Acceleration', 'Model Year', 'Europe', 'Japan', 'USA']
 
@@ -15,16 +15,17 @@ model_features = ['Cylinders', 'Displacement', 'Horsepower', 'Weight',
 class Predict(Resource):
 
     def get(self):
-        return f'MPG prediction model ({path}) was already loaded!', 200
+        return 'MPG prediction model was already loaded!', 200
 
     def post(self):
         # Parser to take arguments:
         parser = reqparse.RequestParser()
         for feature in model_features:
-            parser.add_argument(feature, required=True, type=np.float)
+            parser.add_argument(feature, required=True, type=float)
         args = parser.parse_args()  # parse arguments to dictionary
+        # print(args)
 
-        X = np.array(list(args.values()), ndmin=2, dtype=np.float)
+        X = np.array(list(args.values()), ndmin=2, dtype=float)
         y = model.predict(X).squeeze().tolist()
         print('result (MPG):', y)
         return {'result (MPG)': y, 'input': str(args)}, 200
