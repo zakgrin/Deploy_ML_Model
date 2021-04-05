@@ -1,24 +1,12 @@
 # Deploy ML DNN Model for Auto MPG
-This project is an example for deploying ML models in Python3 with Docker containers. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in cloud. For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon web services (AWS). 
+This project is an example for deploying ML models in Python3 with Docker containers. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon web services (AWS). 
 
+
+
+`pip install -r requirements.txt`
 
 ## ML Model
 In this project, a tensoflow DNN model to predict Auto MPG was used ([Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)). This tutorial shows how to get started with tensorflow to develop a basic deep neural network (DNN) regression model. Although you can deploy the model directly without understanding the details, it is strongly recommended to read this tutorial to understand the data input and output of the model.
-
-The model is located in folder [dnn_model]("dnn_model"). Tensorflow is needed to upload the model in Python: 
-
-````
-keras.models.load_model("dnn_model")
-model = keras.models.load_model("dnn_model")
-
-````
-
-After loading, the model is ready to receive an input and provide the output which is a Auto MPG. The model expecting an numpy array of inputs. Therefore, we need to wrap a single input inside another numpy array as following:
-
-````
-X = np.array([<input>], ndmin=2, dtype=float)
-y = model.predict(X).squeeze().tolist()
-```` 
 
 ## Steps
 1. __Creating Docker Image__:
