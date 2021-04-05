@@ -1,9 +1,22 @@
-# Deploy ML DNN Model for Auto MPG
-This project is an example for deploying ML models in Python3 with Docker containers. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon web services (AWS). 
+# Deploy ML Model
+This project is an example for deploying ML models in Python3 with Docker containers. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. 
 
+For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon web services (AWS).
 
+To get started with this project, you need first to clone the project using git:
+
+`git clone https://github.com/zakgrin/Deploy_ML_Model.git`
+
+After downloading the project files, navigate to the folder project and run the following pip command:
 
 `pip install -r requirements.txt`
+
+Try the following: 
+- Run the python API using: `python app.py` 
+- Open this url in a web browser: `http://127.0.0.1:8080/predict`
+- Open another terminal and run the unit test: `python test_app.py`
+
+
 
 ## ML Model
 In this project, a tensoflow DNN model to predict Auto MPG was used ([Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)). This tutorial shows how to get started with tensorflow to develop a basic deep neural network (DNN) regression model. Although you can deploy the model directly without understanding the details, it is strongly recommended to read this tutorial to understand the data input and output of the model.
