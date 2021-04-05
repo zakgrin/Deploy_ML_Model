@@ -26,7 +26,6 @@ class Predict(Resource):
 
         X = np.array(list(args.values()), ndmin=2, dtype=float)
         y = model.predict(X).squeeze().tolist()
-        print('result (MPG):', y)
         return {'result (MPG)': y, 'input': str(args)}, 200
 
 
