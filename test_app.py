@@ -32,5 +32,5 @@ class TestApp(unittest.TestCase):
 if __name__ == '__main__':
     url_endpoint = 'predict'
     url = 'http://127.0.0.1:8080/' + url_endpoint
-    print('URL:', url, '(make sure that app.py is running in the host)')
+    print('URL:', url, '(make sure that app.py is running in this host)')
     unittest.main()
