@@ -1,7 +1,7 @@
 # Deploy a ML Model
 
 ## Introduction
-This project is an example for deploying ML models in Python3 with Docker containers. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. 
+This project is an example for deploying ML models in Python3 with Docker containers including unit testing. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. 
 
 For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon web services (AWS).
 
@@ -32,11 +32,11 @@ what it does?
 
 
 ## ML Model
-In this project, a tensorflow DNN model to predict Auto MPG was used ([Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)). This tutorial shows how to get started with tensorflow to develop a basic deep neural network (DNN) regression model. Although you can deploy the model directly without understanding the details, it is strongly recommended to read this tutorial to understand the data input and output of the model. [notebook](notebook.ipynb) provides the minimum understanding for model loading to perform prediction. 
+In this project, a tensorflow DNN model to predict Auto MPG was used ([Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression), this tutorial shows how to get started with tensorflow to develop a basic deep neural network (DNN) regression model). Although you can deploy the model directly without understanding the details, it is strongly recommended to understand the data input and output of the model. [notebook](notebook.ipynb) provides the minimum understanding for model loading to perform prediction. 
 
 ## Run API App
 
-__Python__
+### Using Python
 
 If you want to run the API application in your local machine using python, navigate to the folder project and: 
 
@@ -74,7 +74,7 @@ If you want to run the API application in your local machine using python, navig
         ![](images/PythonTest.png)
         This shows that the api responded as expected to http requests (i.e. get request, post request). 
 
-__Docker__
+### Using Docker
 It is important to replicate the api using a docker container which will allow us to deploy it in the cloud. To confirm that a docker container can replicate the expected procedure, then it should pass the same test as we did directly with python. Therefore, the [test_app.py](test_app.py) was designed to test both options using `local` as a host option.
 
 You can use [Dockerfile](Dockerfile) to build a docker container for the model with `docker build`. The following commands were used: 
@@ -89,12 +89,15 @@ You can use [Dockerfile](Dockerfile) to build a docker container for the model w
 
 After building and running the container under `predict` name, we can run [test_app.py](test_app.py) using python as we did before. Make sure that `host_option='local'`. Make sure that you get `OK`in the test. 
 
+Now that our container is ready, we can deployed it in Google Cloud. 
 
-2. __Creating a new project in GCP__:
+### Using GCP
+The 
+1. __Creating a new project in GCP__:
     - Open [GCP Console](https://console.cloud.google.com/).
     - Create a new project.
     - Enable API for the project in [GCP Enable API](https://console.cloud.google.com/flows/enableapi?apiid=cloudbuild.googleapis.com)
-3. __Google Cloud SDK Setup__:
+2. __Google Cloud SDK Setup__:
 - Install [GCP SDK](https://cloud.google.com/sdk/docs/install) and then run the GC SDK shell. Follow the instruction to authenticate your Google account and also select your GCP project. 
 - You can also add docker configuration based on the region (or registry name). 
     - This file is located [C:\Users\<UserName>\.docker\config.json] can can be configured with 
