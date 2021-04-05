@@ -1,37 +1,95 @@
-# Deploy ML Model
+# Deploy a ML Model
+
+## Introduction
 This project is an example for deploying ML models in Python3 with Docker containers. This README file explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. 
 
 For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon web services (AWS).
 
-To get started with this project, you need first to clone the project using git:
+To get started with this project, you need first to clone the project to your working directory using git:
 
 `git clone https://github.com/zakgrin/Deploy_ML_Model.git`
 
-After downloading the project files, navigate to the folder project and run the following pip command:
+## Project Folder
+The project contains the follwing list: 
 
-`pip install -r requirements.txt`
+- [dnn_model](dnn_model): tensorflow model folder.
+- [images](images): documentation images.
+- [input](input): input data to test the model.
+- [.dockerignore](.dockerignore): files to ignore in docker image building.
+- [.gitignore](.gitignore): files to ignore in git.
+- [app.py](app.py): API application (main python file)
+- [Dockerfile](Dockerfile): docker file to build a docker container.
+- [notebook.ipynb](notebook.ipynb): a notebook for a short example for model loading and prediction.
+- [README.md](README.md): This ReadMe for documentation.
+- [requirements.txt](requirements.txt): python venv requirements.
+- [requirements_docker.txt](requirements_docker.txt): docker image requirements.
+- [test_app.py](test_app.py): Unit testing for API application. 
 
-Try the following: 
-- Run the python API using: `python app.py` 
-- Open this url in a web browser: `http://127.0.0.1:8080/predict`
-- Open another terminal and run the unit test: `python test_app.py`
+<!-- ![image](images/gcp/ProjectFolder.png)-->
 
+## Endpoints
+what it does?
 
 
 ## ML Model
-In this project, a tensoflow DNN model to predict Auto MPG was used ([Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)). This tutorial shows how to get started with tensorflow to develop a basic deep neural network (DNN) regression model. Although you can deploy the model directly without understanding the details, it is strongly recommended to read this tutorial to understand the data input and output of the model.
+In this project, a tensorflow DNN model to predict Auto MPG was used ([Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)). This tutorial shows how to get started with tensorflow to develop a basic deep neural network (DNN) regression model. Although you can deploy the model directly without understanding the details, it is strongly recommended to read this tutorial to understand the data input and output of the model. [notebook](notebook.ipynb) provides the minimum understanding for model loading to perform prediction. 
 
-## Steps
-1. __Creating Docker Image__:
-A Docker image was created using the following command based on a [Dockerfile](Dockerfile): 
-    - `docker build -t auto-mpg-docker .`: to build the docker image.
-    - `docker images`: to show images.
-    - `docker rmi deploy-auto-mpg`: to remove docker image.
-To test the docker container locallay, you can use the following commands:
-    - `docker run -p 8080:8080 --name predict -d auto-mpg-docker`: to run the docker image.
-    - `docker ps -a`: to check all docker processes.
-    - `docker stop predict`: to stop the docker process.
-    - `docker rm predict`: to remove the docker process.
+## Run API App
+
+__Python__
+
+If you want to run the API application in your local machine using python, navigate to the folder project and: 
+
+- Run pip install command: 
+    
+    `pip install -r requirements.txt`
+
+- Run the python api app: 
+
+    `python app.py` 
+
+    ![](images/PythonAPP.png)
+
+- To test predict endpoint, open the url in a web browser (ends with `/predict`): 
+
+    `http://127.0.0.1:8080/predict`
+
+    ![](images/PredictEndpoint.png)
+    This show that the api can successfully respond to http get requests. 
+    
+    This api is meant to provide predictions to http post requests. The post request should be in the following format as shown in this example: 
+    
+    `http://127.0.0.1:8080/predict?Cylinders=8.0&Displacement=390.0&Horsepower=190.0&Weight=3850.0&Acceleration=8.5&Model Year=70.0&Europe=0.0&Japan=0.0&USA=01.0`
+    
+    To send a post request, you can use [Postman](https://www.postman.com/downloads/) or `request` module in Python. The following image shows a post request by Postman and how the api response: 
+    
+    ![](images/PostmanPost.png)
+    It can be noted that it took about 583ms for the api to provide a response.
+ 
+- The unit testing for this api is based on `request` module in python. To run the api unit test: 
+    - check [test_app.py](test_app.py) and make sure that `host_option = 'local'`
+    - run the test using `python test_app.py`
+    - make sure that you keep `app.py` working to be able to test it!
+    
+        ![](images/PythonTest.png)
+        This shows that the api responded as expected to http requests (i.e. get request, post request). 
+
+__Docker__
+It is important to replicate the api using a docker container which will allow us to deploy it in the cloud. To confirm that a docker container can replicate the expected procedure, then it should pass the same test as we did directly with python. Therefore, the [test_app.py](test_app.py) was designed to test both options using `local` as a host option.
+
+You can use [Dockerfile](Dockerfile) to build a docker container for the model with `docker build`. The following commands were used: 
+- `docker build -t auto-mpg-docker .`: to build the docker image.
+- `docker images`: to show images.
+- `docker rmi deploy-auto-mpg`: to remove docker image (used to recreate the image).
+- `docker run -p 8080:8080 --name predict -d auto-mpg-docker`: to run the docker image using the same port as host.
+- `docker ps -a`: to check all docker processes.
+- `docker stop predict`: to stop the docker process.
+- `docker start predict`: to start the docker process.
+- `docker rm predict`: to remove the docker process.
+
+After building and running the container under `predict` name, we can run [test_app.py](test_app.py) using python as we did before. Make sure that `host_option='local'`. Make sure that you get `OK`in the test. 
+
+
 2. __Creating a new project in GCP__:
     - Open [GCP Console](https://console.cloud.google.com/).
     - Create a new project.
