@@ -2,6 +2,7 @@ from flask import Flask
 from flask_restful import Resource, Api, reqparse
 from tensorflow import keras
 import numpy as np
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -23,7 +24,6 @@ class Predict(Resource):
         for feature in model_features:
             parser.add_argument(feature, required=True, type=float)
         args = parser.parse_args()  # parse arguments to dictionary
-        # print(args)
 
         X = np.array(list(args.values()), ndmin=2, dtype=float)
         y = model.predict(X).squeeze().tolist()
@@ -35,4 +35,4 @@ api.add_resource(Predict, '/predict')  # '/predict' is entry point for Predict
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='127.0.0.1', port=int(os.environ.get('PORT', 8080)))
