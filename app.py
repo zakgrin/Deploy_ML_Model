@@ -7,8 +7,7 @@ import os
 app = Flask(__name__)
 api = Api(app)
 
-model_path = "dnn_model"
-model = keras.models.load_model(model_path,)
+model = keras.models.load_model("dnn_model")
 model_features = ['Cylinders', 'Displacement', 'Horsepower', 'Weight',
                   'Acceleration', 'Model Year', 'Europe', 'Japan', 'USA']
 
