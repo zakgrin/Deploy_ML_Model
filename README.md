@@ -81,7 +81,7 @@ If you want to run the API application in your local machine using python, navig
         
     - to see the unit testing program, read [test_app.py](test_app.py).
 
-## 3. Build a Docker Container that Includes both the Model and the API
+## Step 3. Build a Docker Container that Includes both the Model and the API
 It is important to replicate the API using a docker container which will allow us to deploy it in the cloud. To confirm that a docker container can replicate the expected procedure, then it should pass the same test as we did directly with python. Therefore, the [test_app.py](test_app.py) was designed to test both options using `local` as a host option. Note that the container uses the same url and port number as when you run the application directly with python. 
 
 You can use [Dockerfile](Dockerfile) to build a docker container with `docker build` command. The following commands were used: 
@@ -96,7 +96,7 @@ You can use [Dockerfile](Dockerfile) to build a docker container with `docker bu
 
 After building and running the container under `predict` name, we can run [test_app.py](test_app.py) using python as we did before. Make sure that `host_option='local'`before you run the test. To confirm that the model is running as expected within the container, `python test_app.py` should also provide `OK` test. Now that our container is ready, we can deploy it in the cloud.
 
-## 4. Uploading the Container in the Cloud for Deployment
+## Step 4. Uploading the Container in the Cloud for Deployment
 
 ### Google Clout Platform (GCP)
 To be able to use GCP, a google account is needed to create a new project. The following 4 steps show the process from starting a new project to uploading the model to GCP.
