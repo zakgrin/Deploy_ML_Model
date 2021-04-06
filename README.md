@@ -154,11 +154,11 @@ Thanks to Metro Digital for encouraging me to work on this project.
 ## References:
 - Tensorflow Tutorial:
     - [Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)
-- Docker Tutorials:
-    - [Docker Get Started](https://docs.docker.com/get-started/)
-    - [how to remove docker images](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes#:~:text=Remove%20all%20images,docker%20images%20%2Da)
 - Python API Tutorials:
     - [The Right Way to Build an API with Python.](https://towardsdatascience.com/the-right-way-to-build-an-api-with-python-cd08ab285f8f)
+- Docker Tutorials:
+    - [Docker Get Started](https://docs.docker.com/get-started/)
     - [Deploy APIs With Python and Docker.](https://towardsdatascience.com/deploy-apis-with-python-and-docker-4ec5e7986224)
+    - [how to remove docker images](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes#:~:text=Remove%20all%20images,docker%20images%20%2Da)
 - Python Unit Testing:
     - [Python Tutorial: Unit Testing Your Code with the unittest Module](https://www.youtube.com/watch?v=6tNS--WetLI)
