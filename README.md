@@ -4,10 +4,10 @@
 This project is an example for deploying ML models in Python3 with Docker containers including unit testing. This README explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. This project was developed in `Python 3.6.8` using PyCharm. 
 
 To deploy a ML model we essentially need two components: a trained ML model and an API to communicate with this model. These two components can then be containerized in a docker container and later deployed in the cloud. Therefore, the process of deploying a ML model can be explained in these 4 steps:
-Step 1. Developing a ML Model.
-Step 2. Designing an API for the ML Model (with Unit Testing).
-Step 3. Build a Docker Container that Includes both the Model and the API. 
-Step 4. Uploading the Container in the Cloud for Deployment. 
+1. Developing a ML Model.
+2. Designing an API for the ML Model (with Unit Testing).
+3. Build a Docker Container that Includes both the Model and the API. 
+4. Uploading the Container in the Cloud for Deployment. 
 
 For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon Web Services (AWS).
 
