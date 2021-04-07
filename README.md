@@ -29,7 +29,7 @@ The project contains the following list:
 - [README.md](README.md): this documentation.
 - [requirements.txt](requirements.txt): python venv requirements.
 - [requirements_docker.txt](requirements_docker.txt): docker image requirements.
-- [test_app.py](test_app.py): Unit testing for API application. 
+- [test_app.py](test_app.py): unit testing for the API application. 
 
 <!--comment-->
 <!--![image](images/ProjectFolder.png)-->
