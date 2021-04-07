@@ -26,7 +26,7 @@ The project contains the following list:
 - [app.py](app.py): API application (main python file).
 - [Dockerfile](Dockerfile): docker file to build a docker image.
 - [notebook.ipynb](notebook.ipynb): a notebook for a short example for model loading and prediction.
-- [README.md](README.md): This ReadMe for documentation.
+- [README.md](README.md): this documentation.
 - [requirements.txt](requirements.txt): python venv requirements.
 - [requirements_docker.txt](requirements_docker.txt): docker image requirements.
 - [test_app.py](test_app.py): Unit testing for API application. 
