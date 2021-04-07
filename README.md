@@ -132,12 +132,12 @@ To be able to use GCP, a google account is needed to create a new project. The f
 4. __Creating a Service in GCP__:
     - To start using the model in the cloud, we have to create a service using __Cloud Run__. The following images shows how to create a new service named `auto-mpg-predict` using the docker image `auto-mpg-docker` within`deploy-auto-mpg` project:
     
-![](images/gcp/CloudRun_1.png)
-![](images/gcp/CloudRun_2a.png)
-![](images/gcp/CloudRun_2b.png)
-![](images/gcp/CloudRun_3.png)
-![](images/gcp/CloudRun_4b.png)
-![](images/gcp/CloudRun_5.png)
+        ![](images/gcp/CloudRun_1.png)
+        ![](images/gcp/CloudRun_2a.png)
+        ![](images/gcp/CloudRun_2b.png)
+        ![](images/gcp/CloudRun_3.png)
+        ![](images/gcp/CloudRun_4b.png)
+        ![](images/gcp/CloudRun_5.png)
 
 5. __Test the model__:
     - To test the get request, simply copy the model url and add `/predict`:    
