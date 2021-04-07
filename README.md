@@ -6,8 +6,8 @@ This project is an example for deploying ML models in Python3 with Docker contai
 To deploy a ML model we essentially need two components: a trained ML model and an API to communicate with this model. These two components can then be containerized in a docker container and later deployed in the cloud. Therefore, the process of deploying a ML model can be explained in these 4 steps:
 1. Developing a ML Model.
 2. Designing an API for the ML Model (with Unit Testing).
-3. Build a Docker Container that Includes both the Model and the API. 
-4. Uploading the Container in the Cloud for Deployment. 
+3. Build a Docker Image that Includes both the Model and the API. 
+4. Uploading the Docker Image in the Cloud for Deployment. 
 
 For now, the selected ML model is deployed in Google Cloud Platform (GCP). However, in future, other cloud platforms will be included such as Microsoft Azure and Amazon Web Services (AWS).
 
@@ -24,7 +24,7 @@ The project contains the following list:
 - [.dockerignore](.dockerignore): files to ignore in docker image building.
 - [.gitignore](.gitignore): files to ignore in git.
 - [app.py](app.py): API application (main python file).
-- [Dockerfile](Dockerfile): docker file to build a docker container.
+- [Dockerfile](Dockerfile): docker file to build a docker image.
 - [notebook.ipynb](notebook.ipynb): a notebook for a short example for model loading and prediction.
 - [README.md](README.md): This ReadMe for documentation.
 - [requirements.txt](requirements.txt): python venv requirements.
@@ -81,22 +81,22 @@ If you want to run the API application in your local machine using python, navig
         
     - to see the unit testing program, read [test_app.py](test_app.py).
 
-## Step 3. Build a Docker Container that Includes both the Model and the API
+## Step 3. Build a Docker Image that Includes both the Model and the API
 It is important to replicate the API using a docker container which will allow us to deploy it in the cloud. To confirm that a docker container can replicate the expected procedure, then it should pass the same test as we did directly with python. Therefore, the [test_app.py](test_app.py) was designed to test both options using `local` as a host option. Note that the container uses the same url and port number as when you run the application directly with python. 
 
-You can use [Dockerfile](Dockerfile) to build a docker container with `docker build` command. The following commands were used: 
+You can use [Dockerfile](Dockerfile) to build a docker image with `docker build` command. The following commands were used: 
 - `docker build -t auto-mpg-docker .`: to build the docker image.
 - `docker images`: to show current docker images.
 - `docker rmi deploy-auto-mpg`: to remove a docker image.
-- `docker run -p 8080:8080 --name predict -d auto-mpg-docker`: to run the docker container using the same port as the host.
+- `docker run -p 8080:8080 --name predict -d auto-mpg-docker`: to run the docker image using the same port as the host.
 - `docker ps -a`: to show all current docker processes.
 - `docker stop predict`: to stop the docker process.
 - `docker start predict`: to start the docker process.
 - `docker rm predict`: to remove the docker process.
 
-After building and running the container under `predict` name, we can run [test_app.py](test_app.py) using python as we did before. Make sure that `host_option='local'`before you run the test. To confirm that the model is running as expected within the container, `python test_app.py` should also provide `OK` test. Now that our container is ready, we can deploy it in the cloud.
+After building the image and running the container under `predict` name, we can run [test_app.py](test_app.py) using python as we did before. Make sure that `host_option='local'`before you run the test. To confirm that the model is running as expected within the container, `python test_app.py` should also provide `OK` test. Now that our container is ready, we can deploy it in the cloud.
 
-## Step 4. Uploading the Container in the Cloud for Deployment
+## Step 4. Uploading the Docker Image in the Cloud for Deployment
 
 ### Google Clout Platform (GCP)
 To be able to use GCP, a google account is needed to create a new project. The following 4 steps show the process from starting a new project to uploading the model to GCP.
@@ -122,15 +122,15 @@ To be able to use GCP, a google account is needed to create a new project. The f
             "marketplace.gcr.io": "gcloud"
           }
         }`.
-3. __Uploading Docker Container to GCP__:
-    - Use the following command in Google Cloud SDK Shell at the project directory were [Dockerfile](Dockerfile) is located: `gcloud builds submit --tag gcr.io/deploy-auto-mpg/auto-mpg-docker`. This command will build a docker container and submit it to `gcr.io` registry under `deploy-auto-mpg` project and using the `auto-mpg-docker` docker container. 
+3. __Uploading Docker Image to GCP__:
+    - Use the following command in Google Cloud SDK Shell at the project directory were [Dockerfile](Dockerfile) is located: `gcloud builds submit --tag gcr.io/deploy-auto-mpg/auto-mpg-docker`. This command will build a docker Image and submit it to `gcr.io` registry under `deploy-auto-mpg` project and using the `auto-mpg-docker` docker container. 
     - After a successfully running the previous command, the following message should appear:
     ![](images/gcp/SDK_gcloudbuild.png)
-    - Go to [GCP Console](https://console.cloud.google.com/) to show this new container added under __Container Registry__:
+    - Go to [GCP Console](https://console.cloud.google.com/) to show this new Docker image added under __Container Registry__:
     ![](images/gcp/ContainerRegistry.png)
     
 4. __Creating a Service in GCP__:
-    - To start using the model in the cloud, we have to create a service using __Cloud Run__. The following images shows how to create a new service named `auto-mpg-predict` using the docker container `auto-mpg-docker` within`deploy-auto-mpg` project:
+    - To start using the model in the cloud, we have to create a service using __Cloud Run__. The following images shows how to create a new service named `auto-mpg-predict` using the docker image `auto-mpg-docker` within`deploy-auto-mpg` project:
     
 ![](images/gcp/CloudRun_1.png)
 ![](images/gcp/CloudRun_2a.png)
