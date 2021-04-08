@@ -32,18 +32,18 @@ class TestApp(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    url_endpoint = '/predict'
+    entrypoint = '/predict'
     host_option = 'cloud'
     if host_option == 'local':
-        url = 'http://127.0.0.1:8080' + url_endpoint
+        url = 'http://127.0.0.1:8080' + entrypoint
     if host_option == 'cloud':
-        url = 'https://auto-mpg-predict-jdywf5v6pa-uc.a.run.app' + url_endpoint
+        url = 'https://auto-mpg-predict-jdywf5v6pa-uc.a.run.app' + entrypoint
     unittest.main()
 
     # Todo:
     # parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter)
-    # parser.add_argument('-ep', '--endpoint', default='/predict', metavar='',
-    #                     help="API endpoint (default: /predict)")
+    # parser.add_argument('-ep', '--entrypoint', default='/predict', metavar='',
+    #                     help="API entrypoint (default: /predict)")
     # subparser = parser.add_subparsers(help='selection', dest='host_option')
     # # local:
     # local_parser = subparser.add_parser('local', aliases=['l'],
@@ -63,10 +63,10 @@ if __name__ == '__main__':
     #                           help="Cloud API host (default: https://auto-mpg-predict-jdywf5v6pa-uc.a.run.app)")
     # args = parser.parse_args()
     # print(args)
-    # url_endpoint = '/predict'
+    # entrypoint = '/predict'
     # if args.host_option == 'local':
-    #     url = 'http://127.0.0.1:8080' + url_endpoint
+    #     url = 'http://127.0.0.1:8080' + entrypoint
     # if args.host_option == 'cloud':
-    #     url = 'https://auto-mpg-predict-jdywf5v6pa-uc.a.run.app' + url_endpoint
+    #     url = 'https://auto-mpg-predict-jdywf5v6pa-uc.a.run.app' + entrypoint
     #
     # print('URL:', url, '(make sure that app.py is running in this host)')
