@@ -1,7 +1,7 @@
 # Deploy a ML Model
 
 ## Introduction
-This project is an example for deploying ML models in Python3 with Docker containers including unit testing. This README explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. This project was developed in `Python 3.6.8` using PyCharm. 
+This project is an example for deploying ML models using `Python 3` with Docker containers and unit testing. This README explains the project with a tutorial that should help the reader to learn how to deploy ML models in the cloud. This project was developed in `Python 3.6.8` using PyCharm. 
 
 To deploy a ML model we essentially need two components: a trained ML model and an API to communicate with this model. These two components can then be containerized in a docker container and later deployed in the cloud. Therefore, the process of deploying a ML model can be explained in these 4 steps:
 1. Developing a ML Model.
@@ -99,7 +99,7 @@ After building the image and running the container under `predict` name, we can 
 ## Step 4. Uploading the Docker Image in the Cloud for Deployment
 
 ### Google Clout Platform (GCP)
-To be able to use GCP, a google account is needed to create a new project. The following 4 steps show the process from starting a new project to uploading the model to GCP.
+To be able to use GCP, a google account is needed to create a new project. The following 5 steps show the process from starting a new project to running the model in GCP and performing a unit testing from a local machine.
 
 1. __Creating a new project in GCP__:
     - Open [GCP Console](https://console.cloud.google.com/).
