@@ -148,10 +148,10 @@ To be able to use GCP, a google account is needed to create a new project. The f
         (This shows a successful unit test for the model in GCP)
      
 
-## Credits:
+## Credits
 Thanks to Metro Digital for encouraging me to work on this project. 
 
-## References:
+## References
 - Tensorflow Tutorial:
     - [Basic regression: Predict fuel efficiency](https://www.tensorflow.org/tutorials/keras/regression)
 - Python API Tutorials:
