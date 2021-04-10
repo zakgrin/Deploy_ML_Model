@@ -15,6 +15,8 @@ To get started with this project, you need first to clone the repository to your
 
 `git clone https://github.com/zakgrin/Deploy_ML_Model.git`
 
+__Note:__ if you find this project useful in anyway, please do not forget to give it a start.
+
 ## Project Folder
 The project contains the following list: 
 
@@ -86,13 +88,14 @@ It is important to replicate the API using a docker container which will allow u
 
 You can use [Dockerfile](Dockerfile) to build a docker image with `docker build` command. The following commands were used: 
 - `docker build -t auto-mpg-docker .`: to build the docker image.
-- `docker images`: to show current docker images.
-- `docker rmi deploy-auto-mpg`: to remove a docker image.
+- `docker images` or `docker image ls -a`: to show current docker images.
+- `docker rmi deploy-auto-mpg` or `docker image rm deploy-auto-mpg`: to remove a docker image.
+    - (You can use the first few letters in the image ID instead of the name).
 - `docker run -p 8080:8080 --name predict -d auto-mpg-docker`: to run the docker image using the same port as the host.
-- `docker ps -a`: to show all current docker processes.
-- `docker stop predict`: to stop the docker process.
-- `docker start predict`: to start the docker process.
-- `docker rm predict`: to remove the docker process.
+- `docker ps -a` or `docker container ls -a`: to show all current docker processes.
+- `docker stop predict` or `docker container stop predict`: to stop the docker process.
+- `docker start predict` or `docker container start predict`: to start the docker process.
+- `docker rm predict` or `docker container rm predict`: to remove the docker process.
 
 After building the image and running the container under `predict` name, we can run [test_app.py](test_app.py) using python as we did before. Make sure that `host_option='local'`before you run the test. To confirm that the model is running as expected within the container, `python test_app.py` should also provide `OK` test. Now that our container is ready, we can deploy it in the cloud.
 
@@ -161,4 +164,4 @@ Thanks to Metro Digital for encouraging me to work on this project.
 - Docker Tutorials:
     - [Docker Get Started](https://docs.docker.com/get-started/)
     - [Deploy APIs With Python and Docker](https://towardsdatascience.com/deploy-apis-with-python-and-docker-4ec5e7986224)
-    - [how to remove docker images](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes#:~:text=Remove%20all%20images,docker%20images%20%2Da)
+    - [How To Remove Docker Images, Containers, and Volumes](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes#:~:text=Remove%20all%20images,docker%20images%20%2Da)
