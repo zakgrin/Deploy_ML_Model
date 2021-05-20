@@ -151,8 +151,9 @@ To be able to use GCP, a google account is needed to create a new project. The f
         (This shows a successful unit test for the model in GCP)
      
 
-## Credits
-Thanks to Metro Digital for encouraging me to work on this project. 
+## ToDo:
+- Add AWS example.
+- Add Azure example.
 
 ## References
 - Tensorflow Tutorial:
